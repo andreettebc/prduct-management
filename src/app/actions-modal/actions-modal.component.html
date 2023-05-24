@@ -1,0 +1,14 @@
+<i
+  class="fa fa-ellipsis-v actions-toggle"
+  aria-hidden="true"
+  (click)="showActions()"
+></i>
+<div class="actions-container" *ngIf="isOpen">
+  <button (click)="clickEdit()">
+    <i class="fa fa-pencil" aria-hidden="true"></i><span>Editar</span>
+  </button>
+  <hr />
+  <button (click)="clickDelete()">
+    <i class="fa fa-trash" aria-hidden="true"></i><span>Eliminar</span>
+  </button>
+</div>

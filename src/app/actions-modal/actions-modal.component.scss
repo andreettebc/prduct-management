@@ -1,0 +1,49 @@
+.actions-container {
+  position: absolute;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #dbdbdc;
+  box-shadow: 0 4px 8px -3px rgba(7, 7, 7, 0.08);
+  //width: 100%;
+  top: 30px;
+  right: 30px;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+
+  button {
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+    text-align: start;
+    cursor: pointer;
+    background-color: transparent;
+
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+
+    i {
+      font-size: 16px;
+      margin-right: 16px;
+    }
+
+    span {
+      font-size: 16px;
+    }
+  }
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid #dee3ed;
+  width: 100%;
+}
+
+.actions-toggle {
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 1rem;
+}

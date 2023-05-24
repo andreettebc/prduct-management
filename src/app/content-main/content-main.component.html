@@ -1,0 +1,159 @@
+<div class="main-container">
+
+
+    <header class="main-container__header">
+        <img src="assets/banco-logo.png" alt="banco-logo" />
+    </header>
+
+
+
+    <main class="main-container__main">
+
+        <div class="row mt-24 pt-80">
+            <div class="pt-12">
+                <input class="input" id="buscador" type="text" placeholder="Search..." #buscador
+                    (input)="search(buscador.value)">
+            </div>
+            <div>
+
+                <button type="button" class="button_primary" (click)="addProduct(modalNewProduct)">
+                    Agregar
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="card mt-24 border bc-w">
+            <table class="table table-bordered mt-3 styled-table" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th class="left" scope="col">Logo</th>
+                        <th class="left" scope="col">Nombre del producto</th>
+                        <th class="left" scope="col"> <span class="tooltip">
+                                Descripción
+                                <i class="fas fa-info-circle" style="color: #4a4a50;" aria-hidden="true"></i>
+                                <span class="tooltip-text">Descripción del producto</span>
+                            </span></th>
+                        <th class="left" scope="col"> <span class="tooltip">
+                                Fecha de liberación
+                                <i class="fas fa-info-circle" style="color: #4a4a50;" aria-hidden="true"></i>
+                                <span class="tooltip-text">Fecha a liberar el producto para los clientes en
+                                    General</span>
+                            </span></th>
+                        <th class="left" scope="col"> <span class="tooltip">
+                                Fecha de reestructuración
+                                <i class="fas fa-info-circle" style="color: #4a4a50;" aria-hidden="true"></i>
+                                <span class="tooltip-text">Fecha de revisión del producto para cambiar Términos y
+                                    Condiciones</span>
+                            </span></th>
+
+                        <th class="left" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of products | paginate: {itemsPerPage: 5, currentPage: pageActual}">
+                        <td>
+                            <div class="logo">
+                                <span class="initials"> TC</span>
+                            </div>
+
+                        </td>
+                        <td class="left">
+                            {{product.name}}
+                        </td>
+                        <td class="left">
+                            {{product.description}}
+                        </td>
+                        <td class="left">
+
+                            {{product.date_release | date:'dd/MM/yyyy'}}
+                        </td>
+                        <td class="left">
+                            {{product.date_revision | date:'dd/MM/yyyy'}}
+                        </td>
+                        <td class="actions">
+                            <app-actions-modal></app-actions-modal>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls class="my-pagination" previousLabel="Previous" nextLabel="Next"
+                screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" [autoHide]="true"
+                (pageChange)="pageActual = $event"></pagination-controls>
+
+        </div>
+
+
+
+    </main>
+</div>
+
+
+<ng-template #modalNewProduct let-modal>
+    <div class="modal modal--md ">
+        <div class="modal__box modal__box--md  ">
+            <form [formGroup]="formProduct" autocomplete="off">
+                <div class="form__header ">
+                    <h2 class="center_text">Formulario de registro</h2>
+                </div>
+
+
+                <table class="table table-borderless ml-100" style="width: 100%;">
+                    <tbody>
+                        <tr>
+
+                            <td><label for="id" class="col-xs-6">ID: </label></td>
+
+                            <td><label for="name" class="col-xs-6">Nombre: </label></td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="text" pattern="\d*" class="form-control" id="id" formControlName="id"
+                                    [class.is-invalid]="idNoValid"></td>
+                            <td><input type="text" class="form-control" id="name" formControlName="name"
+                                    [class.is-invalid]="nameNoValid"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="description" class="col-xs-4">Descripción: </label></td>
+                            <td><label for="image" class="col-xs-4">Logo: </label></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="form-control" id="description" formControlName="description"
+                                    [class.is-invalid]="descriptionNoValid"></td>
+                            <td><input type="text" class="form-control" id="image" formControlName="image"
+                                    [class.is-invalid]="descriptionNoValid"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="release_date" class="col-xs-4">Fecha Liberación: </label></td>
+                            <td><label for="review_date" class="col-xs-4">Fecha revisión: </label></td>
+                        </tr>
+                        <tr>
+                            <td><input [(ngModel)]="releasedate" (input)="reviewDate()" type="text"
+                                     pattern="\d{4}\/\d{2}\/\d{2}"
+                                    class="form-control" id="release_date" formControlName="release_date"
+                                    placeholder="AAAA-MM-DD" ></td>
+
+                            <td><input [(ngModel)]="reviewdate" readonly type="text" class="form-control disabled  "
+                                    id="review_date" formControlName="review_date">
+                            </td>
+                        </tr>
+                </table>
+
+                <div class="mt-80 center_text">
+                    <button type="button" class=" mr-72 button_secondary " (click)="resetForm()">
+                        Reiniciar
+                    </button>
+
+                    <button type="submit" class="button_primary" (click)="saveProduct()" >
+                        Enviar
+                    </button>
+                </div>
+
+
+
+
+            </form>
+        </div>
+    </div>
+</ng-template>

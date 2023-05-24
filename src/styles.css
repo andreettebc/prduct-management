@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+.mt-24{
+    margin-top: 24px;
+}
+
+.mt-80{
+    margin-top: 80px;
+}
+
+.mt-24{
+    margin-top: 24px;
+ }
+
+ .mt-48{
+    margin: 48px;
+ }
+
+ .pl-24{
+    padding-left: 32px;
+ }
+
+ h1{
+    font-size: 24px;
+}
+
+.ml-16{
+    margin-left: 16px;
+}
+
+.center{
+    align-self: center;
+ }
+
+ .pt-12{
+    padding-top: 12px;
+ }
+
+ .pt-80{
+    padding-top: 80px;
+ }
+
+ .bc-w{
+    background-color: white;
+ }
+
+ .center_text{
+   text-align: center;
+ }
+
+ .ml-100{
+   margin-left: 100px;
+ }
